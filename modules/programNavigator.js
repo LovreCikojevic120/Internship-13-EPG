@@ -1,5 +1,7 @@
 import { PrintPrograms, PrintChannels, FindProgramByIndex, PrintProgramDetails } from "./utils.js";
-import {channels} from './tvPrograms.js'
+import { channels } from './tvPrograms.js'
+import {adultContentShield} from './tvProgramsHandler.js';
+import {programActionChoice} from './constantsAndEnums.js';
 
 function SelectProgram(){
 
@@ -25,12 +27,36 @@ function SelectProgram(){
 }
 
 function SelectProgramAction(currentProgram){
+	let programAction;
+
 	if(!currentProgram){
 		alert('No program is currently selected');
 		return;
 	}
 
-	let programAction = prompt(PrintProgramDetails(currentProgram));
+	if(!adultContentShield(currentProgram))return;
+
+	while(programAction !== programActionChoice.Exit){
+
+		programAction = parseInt(prompt(PrintProgramDetails(currentProgram) +
+			'\n\n1 - Add program to favourites\n2 - Rate program\n0 - Exit to main menu\n'));
+
+		switch(programAction){
+
+			case programActionChoice.Favourites:
+				HandleFavourites();
+				break;
+			case programActionChoice.Rate:
+				ProgramRater();
+				break;
+			case programActionChoice.Exit:
+				alert('Returning to main menu');
+				return;
+			default:
+				alert('Incorrect menu choice');
+				break;
+		}
+	}
 }
 
 export {SelectProgram, SelectProgramAction};

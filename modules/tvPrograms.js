@@ -7,7 +7,7 @@ const channels = [
     description: 'wpifvvpifbv',
     startTime: new Date('2022-2-16 11-30'),
     endTime: new Date('2022-2-16 12-00'),
-    category: 'Dokumentarac',
+    category: 'Adult',
     reprisal: false
   },
 

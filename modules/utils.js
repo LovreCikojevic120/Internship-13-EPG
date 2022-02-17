@@ -3,9 +3,9 @@ import {channels} from './tvPrograms.js';
 
 function PrintProgramDetails(currentProgram){
 	return `Current program:
-	${currentProgram.channelName}
-	${currentProgram.programName}
-	${currentProgram.category}`;
+		${currentProgram.channelName}
+		${currentProgram.programName}
+		${currentProgram.category}`;
 }
 
 function FindProgramByIndex(channelIndex, programIndex){
