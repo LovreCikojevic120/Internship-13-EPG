@@ -4,18 +4,22 @@ import {channels} from './tvPrograms.js';
 function PrintProgramDetails(currentProgram){
 	let favouritesList = JSON.parse(localStorage.getItem('favourites'));
 	let ratingsList = JSON.parse(localStorage.getItem('ratings'));
-	result = '';
+	let result = '', currentProgramRating;
 
 	result += `Current program:
 		${currentProgram.channelName}
 		${currentProgram.programName}
 		${currentProgram.category}`;
 
-	if(favouritesList.find(p=>p.programName === currentProgram.programName))
+	if(favouritesList && favouritesList.find(p => p.programName === currentProgram.programName))
 		result += '\nIn favourites';
 
-	if(ratingsList.find(p=>p.programName === currentProgram.programName))
-		result += `\nRating: ${currentProgram.rating}`;
+	if(ratingsList){
+		currentProgramRating = ratingsList.find(p => p.programName === currentProgram.programName);
+
+		if(currentProgramRating)
+			result += `\nRating: ${currentProgramRating.rating}`;
+	}
 
 	return result;
 }
@@ -43,16 +47,18 @@ function PrintPrograms(channelNumber){
 
 function PrintChannels(chosenChannel){
 
-  let channelList = '==========\nChannels\n==========\n';
+  	let channelList = '==========\nChannels\n==========\n';
+  	let uniqueChannelNames = [...new Map(channels.map((item) => 
+		[item["channelName"], item])).values()];
 
-  channels.forEach(channel => {
-	if(channel.channelNumber == chosenChannel)
-		channelList += '--> ';
+	uniqueChannelNames.forEach(u => {
+		if(u.channelNumber == chosenChannel)
+			channelList += '-> ';
 
-	channelList += `${channel.channelNumber} - ${channel.channelName}\n`;
-  });
-
-  return channelList;
+		channelList += `${u.channelNumber} - ${u.channelName}\n`
+	});
+	
+  	return channelList;
 }
 
 export {PrintPrograms, PrintChannels, FindProgramByIndex, PrintProgramDetails};

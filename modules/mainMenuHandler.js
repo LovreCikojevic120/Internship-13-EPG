@@ -1,7 +1,27 @@
-import { PrintPrograms, PrintChannels, FindProgramByIndex, PrintProgramDetails } from "./utils.js";
-import { channels } from './tvPrograms.js'
-import {adultContentShield, handleFavourites} from './tvProgramsHandler.js';
-import {programActionChoice} from './constantsAndEnums.js';
+import {PrintPrograms, PrintChannels, FindProgramByIndex, PrintProgramDetails} from "./utils.js";
+import {channels} from './tvPrograms.js'
+import {adultContentShield, handleFavourites, rateProgram} from './programActionsHandler.js';
+import {programActionChoice, setPinNumber} from './passwordsAndEnums.js';
+
+function changePassword(){
+	let newPin = '';
+
+	do{
+
+		newPin = prompt('Input a new pin\nMUST CONTAIN BETWEEN 3 AND 6 CHARACTERS\n' +
+			 'To cancel leave empty field');
+		
+		if(newPin.length >= 3 && newPin.length <= 6){
+			setPinNumber(newPin);
+			alert('PIN changed!');
+			return;
+		}
+
+		if(newPin !== '')alert('Incorrect PIN input');
+		else return;
+	}
+	while(newPin !== '');
+}
 
 function SelectProgram(){
 
@@ -47,7 +67,7 @@ function SelectProgramAction(currentProgram){
 				handleFavourites(currentProgram);
 				break;
 			case programActionChoice.Rate:
-				programRater(currentProgram);
+				rateProgram(currentProgram);
 				break;
 			case programActionChoice.Exit:
 				alert('Returning to main menu');
@@ -59,4 +79,4 @@ function SelectProgramAction(currentProgram){
 	}
 }
 
-export {SelectProgram, SelectProgramAction};
+export {SelectProgram, SelectProgramAction, changePassword};

@@ -1,14 +1,14 @@
-import {adultContentPinNumber} from './constantsAndEnums.js';
+import {adultContentPinNumber} from './passwordsAndEnums.js';
 
-function AddRating(){
-	let rating, ratingStars;
+function addRating(){
+	let rating = '0', ratingStars = '';
 
 	while(rating !== ''){
 
-		rating = parseInt(prompt('Input a number between 1 and 5 to rate the program:'));
+		rating = prompt('Input a number between 1 and 5 to rate the program:');
 		if(rating > 0 && rating < 6){
 
-			for(let i = 0;i<rating; i++)
+			for(let i = 0; i < rating; i++)
 				ratingStars += '*';
 
 			return ratingStars;
@@ -21,10 +21,10 @@ function AddRating(){
 }
 
 function rateProgram(currentProgram){
-	let ratingsString = localStorage.getItem('ratings');
+	let ratingsString = localStorage.getItem('ratings'), rating;
 
 	if(!ratingsString){
-		let rating = AddRating();
+		rating = addRating();
 		if(rating === '')return;
 
 		currentProgram.rating = rating;
@@ -35,9 +35,15 @@ function rateProgram(currentProgram){
 
 	localStorage.removeItem('ratings');
 	let ratingsArray = JSON.parse(ratingsString);
+	let currentRatedProgramIndex = ratingsArray.indexOf(
+		ratingsArray.find(p => p.programName === currentProgram.programName));
 
-	if(ratingsArray.some(item => item.programName === currentProgram.programName)){
-		ratingsArray[currentProgram].rating = AddRating();
+	if(ratingsArray[currentRatedProgramIndex]){
+		rating = addRating();
+		if(rating === '')return;
+
+		ratingsArray[currentRatedProgramIndex].rating = rating;
+		alert('Program rating updated');
 	}
 
 	localStorage.setItem('ratings', JSON.stringify(ratingsArray));
@@ -91,4 +97,4 @@ function adultContentShield(currentProgram){
 	return true;
 }
 
-export {adultContentShield, handleFavourites};
+export {adultContentShield, handleFavourites, rateProgram};

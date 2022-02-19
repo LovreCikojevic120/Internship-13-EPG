@@ -1,5 +1,5 @@
-import {mainMenuChoice} from './modules/constantsAndEnums.js';
-import {SelectProgram, SelectProgramAction} from './modules/programNavigator.js';
+import {mainMenuChoice} from './modules/passwordsAndEnums.js';
+import {SelectProgram, SelectProgramAction, changePassword} from './modules/mainMenuHandler.js';
 
 let menuChoice, currentProgram;
 
@@ -20,7 +20,8 @@ while (menuChoice !== 0) {
             SelectProgramAction(currentProgram);
             break;
         case mainMenuChoice.Password:
-            ChangePassword();
+            changePassword();
+            break;
         case mainMenuChoice.Exit:
             alert('Application closing...')
             break;
