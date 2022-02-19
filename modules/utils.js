@@ -2,10 +2,22 @@ import {channels} from './tvPrograms.js';
 
 
 function PrintProgramDetails(currentProgram){
-	return `Current program:
+	let favouritesList = JSON.parse(localStorage.getItem('favourites'));
+	let ratingsList = JSON.parse(localStorage.getItem('ratings'));
+	result = '';
+
+	result += `Current program:
 		${currentProgram.channelName}
 		${currentProgram.programName}
 		${currentProgram.category}`;
+
+	if(favouritesList.find(p=>p.programName === currentProgram.programName))
+		result += '\nIn favourites';
+
+	if(ratingsList.find(p=>p.programName === currentProgram.programName))
+		result += `\nRating: ${currentProgram.rating}`;
+
+	return result;
 }
 
 function FindProgramByIndex(channelIndex, programIndex){

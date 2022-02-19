@@ -1,6 +1,6 @@
 import { PrintPrograms, PrintChannels, FindProgramByIndex, PrintProgramDetails } from "./utils.js";
 import { channels } from './tvPrograms.js'
-import {adultContentShield} from './tvProgramsHandler.js';
+import {adultContentShield, handleFavourites} from './tvProgramsHandler.js';
 import {programActionChoice} from './constantsAndEnums.js';
 
 function SelectProgram(){
@@ -44,10 +44,10 @@ function SelectProgramAction(currentProgram){
 		switch(programAction){
 
 			case programActionChoice.Favourites:
-				HandleFavourites();
+				handleFavourites(currentProgram);
 				break;
 			case programActionChoice.Rate:
-				ProgramRater();
+				programRater(currentProgram);
 				break;
 			case programActionChoice.Exit:
 				alert('Returning to main menu');
