@@ -1,3 +1,5 @@
+import { calculateDate } from "./utils.js";
+
 const channels = [
 
   {
@@ -5,8 +7,8 @@ const channels = [
     channelNumber: 1,
     programName: 'TV Kalendar',
     description: 'wpifvvpifbv',
-    startTime: new Date('2022-2-16 11-30'),
-    endTime: new Date('2022-2-16 12-00'),
+    startTime: calculateDate(21, 0),
+    endTime: calculateDate(22, 0),
     category: 'Adult',
     reprisal: false
   },

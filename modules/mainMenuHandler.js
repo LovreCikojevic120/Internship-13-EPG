@@ -1,4 +1,4 @@
-import {PrintPrograms, PrintChannels, FindProgramByIndex, PrintProgramDetails} from "./utils.js";
+import {PrintPrograms, PrintChannels, FindProgramByIndex, PrintProgramDetails, currentTime} from "./utils.js";
 import {channels} from './tvPrograms.js'
 import {adultContentShield, handleFavourites, rateProgram} from './programActionsHandler.js';
 import {programActionChoice, setPinNumber} from './passwordsAndEnums.js';
@@ -23,6 +23,16 @@ function changePassword(){
 	while(newPin !== '');
 }
 
+function setOngoingProgram(channelNumber){
+	let programsList = channels.filter(c => c.channelNumber == channelNumber);
+	let currentTimePeriod = currentTime();
+
+	for(let program of programsList){
+		if(program.startTime <= currentTimePeriod && program.endTime > currentTimePeriod)
+			return program;
+	}
+}
+
 function SelectProgram(){
 
   let channelMenuChoice, programMenuChoice, currentProgram;
@@ -34,13 +44,16 @@ function SelectProgram(){
 
     if(channels[channelMenuChoice - 1]){
 
-		programMenuChoice = prompt(PrintPrograms(channelMenuChoice));
-		currentProgram = FindProgramByIndex(channelMenuChoice, programMenuChoice - 1);
+			currentProgram = setOngoingProgram(channelMenuChoice);
 
-		if(currentProgram)return currentProgram;
+			programMenuChoice = prompt(PrintPrograms(channelMenuChoice));
+			if(programMenuChoice === '')return currentProgram;
+
+			currentProgram = FindProgramByIndex(channelMenuChoice, programMenuChoice - 1);
+			if(currentProgram)return currentProgram;
     }
 
-	else alert('Chosen program doesn\'t exsist!');
+	else alert('Chosen channel doesn\'t exsist!');
     
   }
   while(channelMenuChoice !== '');

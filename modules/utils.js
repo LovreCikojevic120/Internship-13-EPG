@@ -1,5 +1,15 @@
 import {channels} from './tvPrograms.js';
 
+function calculateDate(hours, minutes){
+	let today = new Date();
+	return new Date(today.getFullYear(), today.getMonth(), today.getDate(), hours, minutes);
+}
+
+function currentTime(){
+	let today = new Date();
+	return new Date(today.getFullYear(), today.getMonth(), today.getDate(), 
+		today.getHours(), today.getMinutes());
+}
 
 function PrintProgramDetails(currentProgram){
 	let favouritesList = JSON.parse(localStorage.getItem('favourites'));
@@ -61,4 +71,4 @@ function PrintChannels(chosenChannel){
   	return channelList;
 }
 
-export {PrintPrograms, PrintChannels, FindProgramByIndex, PrintProgramDetails};
+export {PrintPrograms, PrintChannels, FindProgramByIndex, PrintProgramDetails, calculateDate, currentTime};
