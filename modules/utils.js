@@ -17,9 +17,10 @@ function PrintProgramDetails(currentProgram){
 	let result = '', currentProgramRating;
 
 	result += `Current program:
-		${currentProgram.channelName}
-		${currentProgram.programName}
-		${currentProgram.category}`;
+	Kanal: ${currentProgram.channelName}\nProgram: ${currentProgram.programName}
+	Opis programa: ${currentProgram.description}\nKategorija: ${currentProgram.category}
+	Početak: ${currentProgram.startTime.getHours()}:${currentProgram.startTime.getMinutes()}
+	Kraj: ${currentProgram.endTime.getHours()}:${currentProgram.endTime.getMinutes()}`;
 
 	if(favouritesList && favouritesList.find(p => p.programName === currentProgram.programName))
 		result += '\nIn favourites';
@@ -51,7 +52,11 @@ function PrintPrograms(channelNumber){
   let programList = PrintChannels(channelNumber);
   
   programList += '==========\nPrograms\n==========\n';
-  programs.forEach(program => programList += `${counter++} - ${program.programName}\n`);
+  programs.forEach(program => {
+		programList += `${counter++} - ${program.programName} ${program.startTime.getHours()}:${program.startTime.getMinutes()} - ${program.endTime.getHours()}:${program.endTime.getMinutes()}`;
+		if(program.startTime <= currentTime() && program.endTime > currentTime())programList += '  **Live**\n';
+		else programList += '\n';
+	});
   return programList;
 }
 
