@@ -30,7 +30,9 @@ function PrintProgramDetails(currentProgram){
 
 		if(currentProgramRating)
 			result += `\nRating: ${currentProgramRating.rating}`;
-	}
+		}
+
+		if(currentProgram.reprisal)result += '\nREPRIZA';
 
 	return result;
 }
@@ -51,7 +53,8 @@ function PrintPrograms(channelNumber){
 
   let programList = PrintChannels(channelNumber);
   
-  programList += '==========\nPrograms\n==========\n';
+  programList += '==========\nPrograms,\n' +
+		'leave field empty to auto select live program:\n==========\n';
   programs.forEach(program => {
 		programList += `${counter++} - ${program.programName} ${program.startTime.getHours()}:${program.startTime.getMinutes()} - ${program.endTime.getHours()}:${program.endTime.getMinutes()}`;
 		if(program.startTime <= currentTime() && program.endTime > currentTime())programList += '  **Live**\n';

@@ -381,10 +381,65 @@ const channels = [
     channelNumber: 4,
     programName: 'Miss Bikini Bačvice Edition',
     description: 'Biramo najlipšu žensku na Baćama',
-    startTime: calculateDate(10, 0),
-    endTime: calculateDate(11, 59),
+    startTime: calculateDate(13, 0),
+    endTime: calculateDate(14, 59),
     category: 'Adult',
     reprisal: false
+  },
+
+  {
+    channelName: 'RTL Televizija',
+    channelNumber: 4,
+    programName: 'InDizajn sa Mirjanom Mikulec',
+    description: 'Dizajn interijera sa Mirjanom',
+    startTime: calculateDate(13, 0),
+    endTime: calculateDate(14, 59),
+    category: 'Edukativni program',
+    reprisal: false
+  },
+
+  {
+    channelName: 'RTL Televizija',
+    channelNumber: 4,
+    programName: 'Tri dva jedan KUHAJ',
+    description: 'Kuhanje sa Ivanom Pažaninom',
+    startTime: calculateDate(15, 0),
+    endTime: calculateDate(16, 59),
+    category: 'Kulinarska emisija',
+    reprisal: false
+  },
+
+  {
+    channelName: 'RTL Televizija',
+    channelNumber: 4,
+    programName: 'Vijesti u 17',
+    description: 'Dnevne novosti',
+    startTime: calculateDate(17, 0),
+    endTime: calculateDate(17, 59),
+    category: 'Informativni program',
+    reprisal: false
+  },
+
+  {
+    channelName: 'RTL Televizija',
+    channelNumber: 4,
+    programName: 'Vampires kiss',
+    description: 'Najbolji Nic Cage film',
+    startTime: calculateDate(18, 0),
+    endTime: calculateDate(19, 59),
+    category: 'Drama film',
+    reprisal: false
+  },
+
+  {
+    channelName: 'RTL Televizija',
+    channelNumber: 4,
+    programName: 'RTL Vijesti',
+    description: 'Dnevne novosti',
+    startTime: calculateDate(20, 0),
+    endTime: calculateDate(0, 0),
+    category: 'Informativno',
+    reprisal: true
   },
 ]
 
