@@ -72,7 +72,7 @@ function SelectProgramAction(currentProgram){
 	while(programAction !== programActionChoice.Exit){
 
 		programAction = parseInt(prompt(PrintProgramDetails(currentProgram) +
-			'\n\n1 - Add program to favourites\n2 - Rate program\n0 - Exit to main menu\n'));
+			'\n\n1 - Add/remove program to favourites\n2 - Rate program\n0 - Exit to main menu\n'));
 
 		switch(programAction){
 
